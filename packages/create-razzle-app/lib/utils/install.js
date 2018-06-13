@@ -35,7 +35,8 @@ module.exports = function install(opts) {
         output.success(`Installed dependencies for ${projectName}`);
         resolve();
       })
-      .catch(function() {
+      .catch(function(err) {
+        console.log(err);
         stopInstallSpinner();
         console.log(messages.installError(packages));
         return reject(new Error(`${installCmd} installation failed`));
@@ -49,6 +50,6 @@ function getInstallArgs(cmd, packages) {
     return args.concat(packages, ['--verbose']);
   } else if (cmd === 'yarn') {
     const args = ['add'];
-    return args.concat(packages);
+    return args.concat(packages, ['--ignore-engines']);
   }
 }

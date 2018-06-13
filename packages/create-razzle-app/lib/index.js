@@ -42,6 +42,31 @@ module.exports = function createRazzleApp(opts) {
   }
 };
 
+const deps = [
+  'react', 
+  'react-dom', 
+  'react-router-dom', 
+  'razzle', 
+  'express', 
+  'emotion', 
+  'react-apollo', 
+  'apollo-client', 
+  'apollo-cache-inmemory', 
+  'apollo-link-http', 
+  'graphql-tag', 
+  'es6-promise', 
+  'isomorphic-fetch', 
+  'graphql-relay', 
+  'graphql-tools', 
+  'body-parser', 
+  'graphql-cost-analysis', 
+  'apollo-link-schema', 
+  'apollo-server-express', 
+  'semantic-ui-css', 
+  'semantic-ui-react', 
+  'graphql'
+];
+
 function installWithMessageFactory(opts, isExample = false) {
   const projectName = opts.projectName;
   const projectPath = opts.projectPath;
@@ -52,12 +77,13 @@ function installWithMessageFactory(opts, isExample = false) {
       projectPath: projectPath,
       packages: isExample
         ? ['razzle']
-        : ['react', 'react-dom', 'react-router-dom', 'razzle', 'express'],
+        : deps,
     })
       .then(function() {
         console.log(messages.start(projectName));
       })
       .catch(function(err) {
+        console.log(err);
         throw err;
       });
   };
